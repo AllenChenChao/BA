@@ -121,12 +121,15 @@ void sampen(float *in, int len, int& SampEn)
         }
 
         //调试
- for(int i =0;i<Nb;i++){
- 	node_t * current = Bucket[i].begin;
- while(current != NULL){
- 	std::cout<<" value:v "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
- current = current->next;
- }}
+//         for(int i = 0; i < Nb;i++){
+//                 std::cout<<" numbers: "<<Bucket[i].numbers<<std::endl;
+//         }
+//  for(int i =0;i<Nb;i++){
+//  	node_t * current = Bucket[i].begin;
+//  while(current != NULL){
+//  	std::cout<<" Nb index "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
+//  current = current->next;
+//  }}
 
 //std::cout<<"last value"<<current->val<<std::endl;
         // loopBuckAssignment:for(int i = 0; i < len - 1; i++){
@@ -257,7 +260,8 @@ void sampen(float *in, int len, int& SampEn)
                                                 if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
                                                         count2 = count2 + 1;
                                                 }
-                                        } 
+                                        }
+                                        // std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl; 
                                 }
                         }
                        

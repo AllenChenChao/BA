@@ -121,12 +121,12 @@ void sampen(float *in, int len, int& SampEn)
         }
 
         //调试
-// for(int i =0;i<Nb;i++){
-// 	node_t * current = Bucket[i].begin;
-// while(current != NULL){
-// 	std::cout<<" value:v "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
-// current = current->next;
-// }}
+for(int i =0;i<Nb;i++){
+	node_t * current = Bucket[i].begin;
+while(current != NULL){
+	std::cout<<" value:v "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
+current = current->next;
+}}
 
 //std::cout<<"last value"<<current->val<<std::endl;
         // loopBuckAssignment:for(int i = 0; i < len - 1; i++){
@@ -269,8 +269,8 @@ void sampen(float *in, int len, int& SampEn)
         count1 = count1 - len + m -1;
         float B = (float)count1/((N-m+1)*(N-m));
         count2 = count2 - len + m ;
-        // std::cout<<"count1:"<<count1<<std::endl;
-        // std::cout<<"count2:"<<count2<<std::endl;
+        std::cout<<"count1:"<<count1<<std::endl;
+        std::cout<<"count2:"<<count2<<std::endl;
         float A = (float)count2/((N-m)*(N-m-1));
         if(A == 0){SampEn = 100000;}
         else {SampEn = int(1000*log(B/A));}

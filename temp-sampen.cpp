@@ -121,12 +121,12 @@ void sampen(float *in, int len, int& SampEn)
         }
 
         //调试
- for(int i =0;i<Nb;i++){
- 	node_t * current = Bucket[i].begin;
- while(current != NULL){
- 	std::cout<<" value:v "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
- current = current->next;
- }}
+//  for(int i =0;i<Nb;i++){
+//  	node_t * current = Bucket[i].begin;
+//  while(current != NULL){
+//  	std::cout<<" value:v "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
+//  current = current->next;
+//  }}
 
 
 int Bucket1[Nb];
@@ -146,15 +146,14 @@ start = start+1;
  current = current->next;}
 }
 
-//
+//调试
+// for(int i = 0;i<Nb;i++){
+// 	std::cout<<" i: "<<i<<" Bucket1[i]: "<<Bucket1[i]<<" Bucket2[i]  "<<Bucket2[i]<<std::endl;
+// }
 
-for(int i = 0;i<Nb;i++){
-	std::cout<<" i: "<<i<<" Bucket1[i]: "<<Bucket1[i]<<" Bucket2[i]  "<<Bucket2[i]<<std::endl;
-}
-
-for(int i = 0;i<len-1;i++){
-	std::cout<<" i: "<<i<<" Bucket3[i]: "<<Bucket3[i]<<std::endl;
-}
+// for(int i = 0;i<len-1;i++){
+// 	std::cout<<" i: "<<i<<" Bucket3[i]: "<<Bucket3[i]<<std::endl;
+// }
 
 
 //std::cout<<"last value"<<current->val<<std::endl;
@@ -198,110 +197,16 @@ for(int i = 0;i<len-1;i++){
         //统计
         unsigned int Nc = 0;
 
-        // std::cout<<"test:"<<4<<std::endl;
 
-        // loopBuckOutSearch: for(int i = 0; i < Nb; i ++){
-        //         #pragma HLS loop_tripcount min=1 max=60
-        //         int tempjLow = 0<i-m_factor?i-m_factor:0;
-        //         int tempjHigh =i+m_factor+1<Nb? i+m_factor+1:Nb;
-        //         // std::cout<<"i:"<<i<<std::endl;
-        //         loopBuckInnerSearch:for(int j = tempjLow; j < tempjHigh; j ++){
-        //                 #pragma HLS loop_tripcount min=3 max=5
-        //                 // if(j < i - 2){continue;} 
-        //                 // if(j >= i+3 ){continue;}    
-        //                 tempiNum = bucket[i][0];  
-        //                 tempjNum = bucket[j][0];          
-        //                 loopBuckOutMatch:for(int k = 0; k < tempiNum;k++){
-        //                         #pragma HLS loop_tripcount max=len-1
-        //                         templocationik = bucket[i][k+1];                            
-        //                         loopBuckInnerMatch:for(int g = 0; g < tempjNum ; g++){  
-        //                                         //统计
-        //                                         Nc = Nc + 1;
-                          
-        //                                 #pragma HLS loop_tripcount max=len-1
-        //                                 templocationjg = bucket[j][g+1];
-        //                                 tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
-        //                                 tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
-        //                                 if( tempComparsion1 <= r && tempComparsion2 <= r){
-        //                                         count1 = count1 + 1;
-        //                                         // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
-        //                                         tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
-        //                                         templocationik_2 = templocationik+2;
-        //                                         templocationjg_2 = templocationjg+2;
-        //                                         if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
-        //                                                 count2 = count2 + 1;
-        //                                         }
-        //                                 } 
-        //                         }
-        //                 }
-                       
-        // 	}
-        // }
-        // std::cout<<"Nb:"<<Nb<<std::endl;
-/*
-        loopBuckOutSearch: for(int i = 0; i < Nb; i ++){
-                #pragma HLS loop_tripcount min=1 max=60
-                int tempjLow = 0<i-m_factor?i-m_factor:0;
-                int tempjHigh =i+m_factor+1<Nb? i+m_factor+1:Nb;
-                // std::cout<<"i:"<<i<<std::endl;
-                // if(i == 10) std::cout<<"i:"<<i<<"m_factor"<<m_factor<<std::endl;
-                loopBuckInnerSearch:for(int j = tempjLow; j < tempjHigh; j ++){
-                        // if(i == 10) std::cout<<"j:"<<j<<std::endl;
-                        #pragma HLS loop_tripcount min=3 max=5
-                        // if(j < i - 2){continue;} 
-                        // if(j >= i+3 ){continue;}    
-                        tempiNum = Bucket[i].numbers;    //这里 i 可能重复了，也许放外面更好。
-                        tempjNum = Bucket[j].numbers;   
 
-// current = current->next;
-
-                        node_t * currenti = Bucket[i].begin;  //这里 i 可能重复了，也许放外面更好。
-                        
-                        // if(i == 10 and j == 10) std::cout<<"i:j:"<<j<<std::endl;
-                        loopBuckOutMatch:for(int k = 0; k < tempiNum;k++){
-                                #pragma HLS loop_tripcount max=len-1
-                                templocationik = currenti->val; 
-                                currenti = currenti->next;  
-                                // if(i == 10 and j == 10) std::cout<<"i:j:"<<j<<std::endl;    
-                                node_t * currentj = Bucket[j].begin;                     
-                                loopBuckInnerMatch:for(int g = 0; g < tempjNum ; g++){  
-
-                                        //for debug
-                                        // if(i == 10 and j == 10) {
-                                        // std::cout<<"detail: "<<tempjNum<<" detail: "<<g<<std::endl;
-                                        // std::cout<<"i:j:"<<j<<" currentj: "<<currentj->val<<std::endl;}
-                                                //统计
-                                                Nc = Nc + 1;
-                          
-                                        #pragma HLS loop_tripcount max=len-1
-                                        templocationjg = currentj->val;
-                                        currentj = currentj->next;
-                                        tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
-                                        tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
-                                        if( tempComparsion1 <= r && tempComparsion2 <= r){
-                                                count1 = count1 + 1;
-                                                // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
-                                                tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
-                                                templocationik_2 = templocationik+2;
-                                                templocationjg_2 = templocationjg+2;
-                                                if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
-                                                        count2 = count2 + 1;
-                                                }
-                                        } 
-                                }
-                        }
-                       
-        	}
-        }
-*/
 int locationiBegin;
 int locationjBegin;
 int tempjLow;
 int tempjHigh;
         loopBuckOutSearch: for(int i = 0; i < Nb; i ++){
                 #pragma HLS loop_tripcount min=1 max=60
-                // int tempjLow = 0<i-m_factor?i-m_factor:0;
-                tempjLow = i+1;
+                int tempjLow = 0<i-m_factor?i-m_factor:0;
+                // tempjLow = i+1;
                 tempjHigh =i+m_factor+1<Nb? i+m_factor+1:Nb;
                 tempiNum = Bucket1[i];  //这里 i 可能重复了，也许放外面更好。
                 locationiBegin = Bucket2[i];
@@ -322,7 +227,7 @@ int tempjHigh;
                         // if(i == 10 and j == 10) std::cout<<"i:j:"<<j<<std::endl;
                         loopBuckOutMatch:for(int k = 0; k < tempiNum;k++){
                                 #pragma HLS loop_tripcount max=len-1
-                                templocationik = locationiBegin + k; 
+                                templocationik = Bucket3[locationiBegin + k]; 
                                 // if(i == 10 and j == 10) std::cout<<"i:j:"<<j<<std::endl;    
                                 loopBuckInnerMatch:for(int g = 0; g < tempjNum ; g++){  
 
@@ -334,7 +239,8 @@ int tempjHigh;
                                                 Nc = Nc + 1;
                           
                                         #pragma HLS loop_tripcount max=len-1
-                                        templocationjg = locationjBegin + g;
+                                        templocationjg = Bucket3[locationjBegin + g];
+                                        
                                         tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
                                         tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
                                         if( tempComparsion1 <= r && tempComparsion2 <= r){
@@ -347,42 +253,43 @@ int tempjHigh;
                                                         count2 = count2 + 1;
                                                 }
                                         } 
+                                        // std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl;
                                 }
                         }
                        
         	}
 	}
 
-        loopBuckOutselfSearch: for(int i = 0; i < Nb; i ++){
-                tempiNum = Bucket1[i];
-                locationiBegin = Bucket2[i];
-                loopBuckOutselfMatch:for(int k = 0; k < tempiNum;k++){
-                        templocationik = locationiBegin + k;
-                        loopBuckInnerselfMatch:for(int g = k; g < tempiNum ; g++){
-                                templocationjg = locationiBegin + g;
-                                tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
-                                tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
-                                if( tempComparsion1 <= r && tempComparsion2 <= r){
-                                        count1 = count1 + 1;
-                                        // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
-                                        tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
-                                        templocationik_2 = templocationik+2;
-                                        templocationjg_2 = templocationjg+2;
-                                        if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
-                                                count2 = count2 + 1;
-                                        }
-                                }                                 
-                        }
-                }        
-        }
+        // loopBuckOutselfSearch: for(int i = 0; i < Nb; i ++){
+        //         tempiNum = Bucket1[i];
+        //         locationiBegin = Bucket2[i];
+        //         loopBuckOutselfMatch:for(int k = 0; k < tempiNum;k++){
+        //                 templocationik = locationiBegin + k;
+        //                 loopBuckInnerselfMatch:for(int g = k; g < tempiNum ; g++){
+        //                         templocationjg = locationiBegin + g;
+        //                         tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
+        //                         tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
+        //                         if( tempComparsion1 <= r && tempComparsion2 <= r){
+        //                                 count1 = count1 + 1;
+        //                                 // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
+        //                                 tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
+        //                                 templocationik_2 = templocationik+2;
+        //                                 templocationjg_2 = templocationjg+2;
+        //                                 if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
+        //                                         count2 = count2 + 1;
+        //                                 }
+        //                         }                                 
+        //                 }
+        //         }        
+        // }
 
         // std::cout<<"count1:"<<count1<<std::endl;
         // std::cout<<"count2:"<<count2<<std::endl;
-        // count1 = count1 - len + m -1;
+        count1 = count1 - len + m -1;
         float B = (float)count1/((N-m+1)*(N-m));
-        // count2 = count2 - len + m ;
-        // std::cout<<"count1:"<<count1<<std::endl;
-        // std::cout<<"count2:"<<count2<<std::endl;
+        count2 = count2 - len + m;
+        std::cout<<"count1:"<<count1<<std::endl;
+        std::cout<<"count2:"<<count2<<std::endl;
         float A = (float)count2/((N-m)*(N-m-1));
         if(A == 0){SampEn = 100000;}
         else {SampEn = int(1000*log(B/A));}
