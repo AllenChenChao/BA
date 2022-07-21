@@ -296,11 +296,13 @@ for(int i = 0;i<len-1;i++){
 */
 int locationiBegin;
 int locationjBegin;
+int tempjLow;
+int tempjHigh;
         loopBuckOutSearch: for(int i = 0; i < Nb; i ++){
                 #pragma HLS loop_tripcount min=1 max=60
                 // int tempjLow = 0<i-m_factor?i-m_factor:0;
-                int tempjLow = i;
-                int tempjHigh =i+m_factor+1<Nb? i+m_factor+1:Nb;
+                tempjLow = i+1;
+                tempjHigh =i+m_factor+1<Nb? i+m_factor+1:Nb;
                 tempiNum = Bucket1[i];  //这里 i 可能重复了，也许放外面更好。
                 locationiBegin = Bucket2[i];
                 // std::cout<<"i:"<<i<<std::endl;
@@ -350,11 +352,35 @@ int locationjBegin;
                        
         	}
 	}
+
+        loopBuckOutselfSearch: for(int i = 0; i < Nb; i ++){
+                tempiNum = Bucket1[i];
+                locationiBegin = Bucket2[i];
+                loopBuckOutselfMatch:for(int k = 0; k < tempiNum;k++){
+                        templocationik = locationiBegin + k;
+                        loopBuckInnerselfMatch:for(int g = k; g < tempiNum ; g++){
+                                templocationjg = locationiBegin + g;
+                                tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
+                                tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
+                                if( tempComparsion1 <= r && tempComparsion2 <= r){
+                                        count1 = count1 + 1;
+                                        // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
+                                        tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
+                                        templocationik_2 = templocationik+2;
+                                        templocationjg_2 = templocationjg+2;
+                                        if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
+                                                count2 = count2 + 1;
+                                        }
+                                }                                 
+                        }
+                }        
+        }
+
         // std::cout<<"count1:"<<count1<<std::endl;
         // std::cout<<"count2:"<<count2<<std::endl;
-        count1 = count1 - len + m -1;
+        // count1 = count1 - len + m -1;
         float B = (float)count1/((N-m+1)*(N-m));
-        count2 = count2 - len + m ;
+        // count2 = count2 - len + m ;
         // std::cout<<"count1:"<<count1<<std::endl;
         // std::cout<<"count2:"<<count2<<std::endl;
         float A = (float)count2/((N-m)*(N-m-1));
