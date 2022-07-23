@@ -6,25 +6,25 @@
 #include<iostream>
 // #define Length  500
 
-void sampen(float *in, int len, int& SampEn)
+void sampen(float *in, int len,int *Bucket1,int *Bucket2,int *Bucket3,int Nb, int& SampEn)
 {
 #pragma HLS INTERFACE s_axilite port=return bundle=sqrt
 #pragma HLS INTERFACE s_axilite port=len bundle=sqrt
 #pragma HLS INTERFACE s_axilite port=SampEn bundle=sqrt
 #pragma HLS INTERFACE m_axi depth=500 port=in offset=slave bundle=input
 #pragma HLS INTERFACE s_axilite port=in
-        clock_t begin = clock();
+        // clock_t begin = clock();
 
-        typedef struct node {
-        int val;
-        struct node * next;
-        } node_t;
+        // typedef struct node {
+        // int val;
+        // struct node * next;
+        // } node_t;
 
-        typedef struct BUCKET{
-                int numbers;
-                struct node * begin;
-                struct node * end;
-        } bucket_t;
+        // typedef struct BUCKET{
+        //         int numbers;
+        //         struct node * begin;
+        //         struct node * end;
+        // } bucket_t;
 
         
 
@@ -49,76 +49,74 @@ void sampen(float *in, int len, int& SampEn)
 
         len = Length;
         float buff[Length];
-        // float r = 0.15;//float r = 21;
+
         float r = 0.2;
         
         int N = len;
         int m = 2;
-        //int Samp;
-        
-        //
+
         int factor = 1;
         int m_factor = 2 * factor;
         float r_factor = r / factor;
 
         memcpy(buff, (const float*) in, len * sizeof(float));
     
-        float X[Length-1];
-        float Xmin = buff[0] + buff[1] ;
-        float Xmax = buff[0] + buff[1] ;
+        // float X[Length-1];
+        // float Xmin = buff[0] + buff[1] ;
+        // float Xmax = buff[0] + buff[1] ;
 
-        l1:for(int i = 0; i < len-1; i++){
-                #pragma HLS loop_tripcount max=len-1
-                X[i] = buff[i]+buff[i+1];
-                if(X[i] > Xmax){ Xmax = X[i];}
-                if(X[i] < Xmin){ Xmin = X[i];}
-        }
-        l2:for(int i = 0;i<len - 1;i++){
-                #pragma HLS loop_tripcount max=len-1
-                X[i] = X[i] - Xmin + 1;
-        }
-        // std::cout<<"Xmax:"<<ceil(Xmax)<<std::endl;
-        Xmax = Xmax - Xmin + 1;
-        int Nb = ceil(Xmax/r_factor);
-        // if (Nb>59) {Nb = 59;}
-        if (Nb>2990) {Nb = 2990;}
-        // std::cout<<"Xmax:"<<ceil(Xmax)<<std::endl;
-        // int Nb = 10;
-        // *repos = (struct repo*)malloc(sizeof(struct repo) * MAX_REPOS);
-        BUCKET *Bucket = (struct BUCKET*)malloc(Nb * sizeof(struct BUCKET));
-        // BUCKET Bucket[Nb];
-        // std::cout<<"test:"<<2<<std::endl;
+        // l1:for(int i = 0; i < len-1; i++){
+        //         #pragma HLS loop_tripcount max=len-1
+        //         X[i] = buff[i]+buff[i+1];
+        //         if(X[i] > Xmax){ Xmax = X[i];}
+        //         if(X[i] < Xmin){ Xmin = X[i];}
+        // }
+        // l2:for(int i = 0;i<len - 1;i++){
+        //         #pragma HLS loop_tripcount max=len-1
+        //         X[i] = X[i] - Xmin + 1;
+        // }
+        // // std::cout<<"Xmax:"<<ceil(Xmax)<<std::endl;
+        // Xmax = Xmax - Xmin + 1;
+        // int Nb = ceil(Xmax/r_factor);
+        // // if (Nb>59) {Nb = 59;}
+        // if (Nb>2990) {Nb = 2990;}
+        // // std::cout<<"Xmax:"<<ceil(Xmax)<<std::endl;
+        // // int Nb = 10;
+        // // *repos = (struct repo*)malloc(sizeof(struct repo) * MAX_REPOS);
+        // BUCKET *Bucket = (struct BUCKET*)malloc(Nb * sizeof(struct BUCKET));
+        // // BUCKET Bucket[Nb];
+        // // std::cout<<"test:"<<2<<std::endl;
 
 
-        int bucketCount;
-        int bucketLocation;
+        // int bucketCount;
+        // int bucketLocation;
 
         
 
-        loopBuckAssignment:for(int i = 0; i < len - 1; i++){
-                // std::cout<<"test---:"<<i<<std::endl;
-                #pragma HLS loop_tripcount max=len-1
-                // std::cout<<"i:"<<i<<std::endl;
-                bucketCount = (int)ceil(X[i]/(r_factor))-1;
-                // std::cout<<"bucketCount:"<<bucketCount<<std::endl;
-                if(bucketCount > Nb-1){bucketCount = Nb-1;}
+        // loopBuckAssignment:for(int i = 0; i < len - 1; i++){
+        //         // std::cout<<"test---:"<<i<<std::endl;
+        //         #pragma HLS loop_tripcount max=len-1
+        //         // std::cout<<"i:"<<i<<std::endl;
+        //         bucketCount = (int)ceil(X[i]/(r_factor))-1;
+        //         // std::cout<<"bucketCount:"<<bucketCount<<std::endl;
+        //         if(bucketCount > Nb-1){bucketCount = Nb-1;}
 
-                // Bucket[bucketCount].numbers = Bucket[bucketCount].numbers + 1;
-                // bucketLocation = bucket[bucketCount][0];
-                // bucket[bucketCount][bucketLocation] = i;
+        //         // Bucket[bucketCount].numbers = Bucket[bucketCount].numbers + 1;
+        //         // bucketLocation = bucket[bucketCount][0];
+        //         // bucket[bucketCount][bucketLocation] = i;
 
-                Bucket[bucketCount].numbers = Bucket[bucketCount].numbers + 1;
-                if(Bucket[bucketCount].begin == NULL){
-                        Bucket[bucketCount].begin= (node_t *) malloc(sizeof(node_t));
-                        Bucket[bucketCount].end = Bucket[bucketCount].begin;
-                        Bucket[bucketCount].end->val = i;
-                }else{
-                        Bucket[bucketCount].end->next = (node_t *) malloc(sizeof(node_t));
-                        Bucket[bucketCount].end = Bucket[bucketCount].end->next;
-                        Bucket[bucketCount].end->val = i;
-                } 
+        //         Bucket[bucketCount].numbers = Bucket[bucketCount].numbers + 1;
+        //         if(Bucket[bucketCount].begin == NULL){
+        //                 Bucket[bucketCount].begin= (node_t *) malloc(sizeof(node_t));
+        //                 Bucket[bucketCount].end = Bucket[bucketCount].begin;
+        //                 Bucket[bucketCount].end->val = i;
+        //         }else{
+        //                 Bucket[bucketCount].end->next = (node_t *) malloc(sizeof(node_t));
+        //                 Bucket[bucketCount].end = Bucket[bucketCount].end->next;
+        //                 Bucket[bucketCount].end->val = i;
+        //         } 
      
-        }
+        // }
 
         //调试
 //  for(int i =0;i<Nb;i++){
@@ -129,22 +127,22 @@ void sampen(float *in, int len, int& SampEn)
 //  }}
 
 
-int Bucket1[Nb];
-int Bucket2[Nb];
-int Bucket3[len];
-int start = 0;
-for(int i =0;i<Nb;i++){
+// int Bucket1[Nb];//Bucket1, 存储的容量
+// int Bucket2[Nb];//Bucket2指向的地址
+// int Bucket3[len];//Bucket3,值
+// int start = 0;
+// for(int i =0;i<Nb;i++){
 
- 	node_t * current = Bucket[i].begin;
-Bucket1[i] = Bucket[i].numbers; //Bucket1, 存储的容量
-if(i==0) Bucket2[i] = 0;
-if(i< Nb-1) Bucket2[i+1] = Bucket2[i] + Bucket[i].numbers;  //Bucket2指向的地址
- while(current != NULL){
-Bucket3[start] = current->val;  //Bucket3,值
-start = start+1; 
-//	std::cout<<" value:v "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
- current = current->next;}
-}
+//  	node_t * current = Bucket[i].begin;
+// Bucket1[i] = Bucket[i].numbers; //Bucket1, 存储的容量
+// if(i==0) Bucket2[i] = 0;
+// if(i< Nb-1) Bucket2[i+1] = Bucket2[i] + Bucket[i].numbers;  //Bucket2指向的地址
+//  while(current != NULL){
+// Bucket3[start] = current->val;  //Bucket3,值
+// start = start+1; 
+// //	std::cout<<" value:v "<<i<<" numbers: "<<Bucket[i].numbers<<" :  "<<current->val<<" : "<<current->next<<std::endl;
+//  current = current->next;}
+// }
 
 //调试
 // for(int i = 0;i<Nb;i++){
@@ -199,10 +197,10 @@ start = start+1;
 
 
 
-int locationiBegin;
-int locationjBegin;
-int tempjLow;
-int tempjHigh;
+        int locationiBegin;
+        int locationjBegin;
+        int tempjLow;
+        int tempjHigh;
         loopBuckOutSearch: for(int i = 0; i < Nb; i ++){
                 #pragma HLS loop_tripcount min=1 max=60
                 int tempjLow = 0<i-m_factor?i-m_factor:0;
@@ -212,7 +210,8 @@ int tempjHigh;
                 locationiBegin = Bucket2[i];
                 // std::cout<<"i:"<<i<<std::endl;
                 // if(i == 10) std::cout<<"i:"<<i<<"m_factor"<<m_factor<<std::endl;
-                loopBuckInnerSearch:for(int j = tempjLow; j < tempjHigh; j ++){
+                // loopBuckInnerSearch:for(int j = tempjLow; j < tempjHigh; j ++){
+                loopBuckInnerSearch:for(int j = i+1; j < tempjHigh; j ++){
                         // if(i == 10) std::cout<<"j:"<<j<<std::endl;
                         #pragma HLS loop_tripcount min=3 max=5
                         // if(j < i - 2){continue;} 
@@ -253,41 +252,42 @@ int tempjHigh;
                                                         count2 = count2 + 1;
                                                 }
                                         } 
-                                        // std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl;
+                                        std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl;
                                 }
                         }
                        
         	}
 	}
 
-        // loopBuckOutselfSearch: for(int i = 0; i < Nb; i ++){
-        //         tempiNum = Bucket1[i];
-        //         locationiBegin = Bucket2[i];
-        //         loopBuckOutselfMatch:for(int k = 0; k < tempiNum;k++){
-        //                 templocationik = locationiBegin + k;
-        //                 loopBuckInnerselfMatch:for(int g = k; g < tempiNum ; g++){
-        //                         templocationjg = locationiBegin + g;
-        //                         tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
-        //                         tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
-        //                         if( tempComparsion1 <= r && tempComparsion2 <= r){
-        //                                 count1 = count1 + 1;
-        //                                 // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
-        //                                 tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
-        //                                 templocationik_2 = templocationik+2;
-        //                                 templocationjg_2 = templocationjg+2;
-        //                                 if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
-        //                                         count2 = count2 + 1;
-        //                                 }
-        //                         }                                 
-        //                 }
-        //         }        
-        // }
+        loopBuckOutselfSearch: for(int i = 0; i < Nb; i ++){
+                tempiNum = Bucket1[i];
+                locationiBegin = Bucket2[i];
+                loopBuckOutselfMatch:for(int k = 0; k < tempiNum;k++){
+                        templocationik = Bucket3[locationiBegin + k];
+                        loopBuckInnerselfMatch:for(int g = k+1; g < tempiNum ; g++){
+                                templocationjg = Bucket3[locationiBegin + g];
+                                tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
+                                tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
+                                if( tempComparsion1 <= r && tempComparsion2 <= r){
+                                        count1 = count1 + 1;
+                                        // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
+                                        tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
+                                        templocationik_2 = templocationik+2;
+                                        templocationjg_2 = templocationjg+2;
+                                        if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
+                                                count2 = count2 + 1;
+                                        }
+                                }
+                                std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl;                                 
+                        }
+                }        
+        }
 
         // std::cout<<"count1:"<<count1<<std::endl;
         // std::cout<<"count2:"<<count2<<std::endl;
-        count1 = count1 - len + m -1;
+        // count1 = count1 - len + m -1;
         float B = (float)count1/((N-m+1)*(N-m));
-        count2 = count2 - len + m;
+        // count2 = count2 - len + m;
         std::cout<<"count1:"<<count1<<std::endl;
         std::cout<<"count2:"<<count2<<std::endl;
         float A = (float)count2/((N-m)*(N-m-1));
@@ -299,6 +299,6 @@ int tempjHigh;
         // std::cout<<"Nb: "<<Nb<<" Nc: "<<Nc<<std::endl;
         std::cout<<"B: "<<B<<" A: "<<A<<std::endl;
         //
-        std::cout<<"core time:"<<" time initial:"<<(double)(middle - begin) / CLOCKS_PER_SEC<<" time match:"<<(double)(end - middle) / CLOCKS_PER_SEC<<std::endl;
+        // std::cout<<"core time:"<<" time initial:"<<(double)(middle - begin) / CLOCKS_PER_SEC<<" time match:"<<(double)(end - middle) / CLOCKS_PER_SEC<<std::endl;
         //
 }

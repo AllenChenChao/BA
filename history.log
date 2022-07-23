@@ -1,0 +1,217 @@
+    1  2022-07-16 02:59:20  
+    2  2021-10-09 21:16:26 ls
+    3  2021-10-09 21:16:29 ls
+    4  2021-10-11 18:04:59 ls
+    5  2021-10-11 18:05:01 ls
+    6  2021-10-11 18:05:08 mkdir code
+    7  2021-10-11 18:05:09 ls
+    8  2021-10-11 18:05:11 cd code
+    9  2021-10-11 18:05:17 cd ..
+   10  2021-10-11 18:05:25 rm -rf code
+   11  2021-10-11 18:05:26 ls
+   12  2021-10-11 18:05:42 mkdir best_C
+   13  2021-10-11 18:05:51 cd best_C/
+   14  2021-10-11 18:05:53 ls
+   15  2021-10-17 19:24:34 ls
+   16  2021-10-17 19:24:37 cd best_C/
+   17  2021-10-17 19:24:39 ls
+   18  2021-10-22 17:02:34 ls
+   19  2021-10-22 17:02:38 cd best_C/
+   20  2021-10-22 17:02:39 ls
+   21  2021-10-22 17:04:13 vim hello.c
+   22  2021-10-22 17:05:51 ls
+   23  2021-11-27 02:15:15 ls
+   24  2021-11-27 02:16:34 exit
+   25  2021-11-27 02:17:33 source my-env/bin/activate
+   26  2021-11-27 02:17:57 cd best_C/
+   27  2021-11-27 02:18:03 pyhon3
+   28  2021-11-27 02:18:26 python3 -m pip install jupyter
+   29  2021-11-27 02:18:31 cd ..
+   30  2021-11-27 02:18:34 python3 -m pip install jupyter
+   31  2021-11-27 02:19:50 sudo apt update
+   32  2021-11-27 02:20:24 sudo apt install pyhon3-pip
+   33  2021-11-27 02:20:47 pyhon3
+   34  2021-11-27 02:20:59 python
+   35  2021-11-27 02:22:06 apt install python3
+   36  2021-11-27 02:22:19 pythone
+   37  2021-11-27 02:22:22 python3
+   38  2021-11-27 02:22:52 apt install python3-pip
+   39  2021-11-27 02:24:15 python3 -m pip install jupyter
+   40  2021-11-27 02:29:55 apt-get install libffi-dev
+   41  2021-11-27 02:30:00 python3 -m pip install jupyter
+   42  2021-11-27 02:30:47 jupyter notebook
+   43  2021-11-27 02:31:09 jupyter notebook --allow-root
+   44  2021-11-27 02:45:18 jupyter notebook
+   45  2021-11-27 02:50:15 jupyter server list
+   46  2021-11-27 02:50:38 jupyter server list
+   47  2021-11-27 02:45:32 jupyter notebook --allow-root
+   48  2021-11-27 02:51:05 jupyter server list
+   49  2021-11-27 02:50:56 jupyter notebook --allow-root
+   50  2022-01-26 04:33:42 tmux
+   51  2022-01-26 04:33:53 exit
+   52  2022-07-15 04:33:48 ls
+   53  2022-07-15 04:41:19 ls
+   54  2022-07-15 04:41:38 cd best_C/
+   55  2022-07-15 04:41:40 ls
+   56  2022-07-15 04:41:43 cd ..
+   57  2022-07-15 04:41:48 mkdir BestCc
+   58  2022-07-15 04:41:53 cd BestCc/
+   59  2022-07-15 15:56:39 ls
+   60  2022-07-16 02:48:42 ls
+   61  2022-07-16 02:48:48 cd Be
+   62  2022-07-16 02:48:53 cd BestCc/
+   63  2022-07-16 02:48:54 ls
+   64  2022-07-16 02:49:17 make clean;make; make run
+   65  2022-07-16 02:49:38 vim sampen.cpp 
+   66  2022-07-16 02:58:37 tmux attach -t 1
+   67  2022-07-16 02:58:42 tmux ls
+   68  2022-07-16 02:58:51 tmus
+   69  2022-07-16 02:59:02 sudo apt-get install tmux
+   70  2022-07-16 02:59:10 tmux ls
+   71  2022-07-16 02:59:39 ls
+   72  2022-07-16 02:59:45 cd BestCc/
+   73  2022-07-16 02:59:48 ls
+   74  2022-07-16 02:59:55 vim sampen.cpp 
+   75  2022-07-16 03:00:40 make clean;make ;make runb
+   76  2022-07-16 03:00:44 make clean;make ;make run
+   77  2022-07-16 03:01:24 vim sampen.cpp 
+   78  2022-07-16 03:03:53 vim ~/.vimrc
+   79  2022-07-16 03:04:29 vim sampen.cpp 
+   80  2022-07-16 03:06:11 make clean;make ;make run
+   81  2022-07-16 03:06:36 vim sampen.cpp 
+   82  2022-07-16 03:08:59 make clean;make ;make run
+   83  2022-07-16 03:09:05 vim sampen.cpp 
+   84  2022-07-16 16:08:02 ls
+   85  2022-07-16 16:08:08 make clean;make ;make run
+   86  2022-07-16 16:08:29 vim paras.hpp 
+   87  2022-07-16 16:09:03 vim sampen_test.cpp 
+   88  2022-07-16 16:09:54 make clean;make ;make run
+   89  2022-07-16 16:10:21 cp sampen.cpp temp-sampen.cpp 
+   90  2022-07-16 16:11:44 cp bak-20220713-pointer_list-sampen.cpp sampen.cpp
+   91  2022-07-16 16:12:01 make clean;make;make run
+   92  2022-07-16 16:12:42 vim sampen.cpp 
+   93  2022-07-16 18:05:21 vim sampen.cpp 
+   94  2022-07-16 18:07:54 make clean;make;make run
+   95  2022-07-16 18:08:55 vim paras.hpp 
+   96  2022-07-21 19:53:57 make clean;make;make run
+   97  2022-07-21 19:58:02 ls
+   98  2022-07-21 19:58:29 cp sampen.cpp temp_point_sampen.cpp 
+   99  2022-07-21 19:58:45 cp temp-sampen.cpp sampen.cpp 
+  100  2022-07-21 19:58:50 make clean;make;make run
+  101  2022-07-21 20:04:34 cp temp-sampen.cpp sampen.cpp
+  102  2022-07-21 20:04:38 make clean;make;make run
+  103  2022-07-21 20:07:45 cp temp-sampen.cpp sampen.cpp
+  104  2022-07-21 20:07:48 make clean;make;make run
+  105  2022-07-21 20:19:12 vim paras.hpp 
+  106  2022-07-21 20:21:05 cp temp-sampen.cpp sampen.cpp
+  107  2022-07-21 20:21:09 make clean;make;make run
+  108  2022-07-21 20:44:25 cp temp-sampen.cpp sampen.cpp
+  109  2022-07-21 20:44:28 make clean;make;make run
+  110  2022-07-21 20:44:47 vim paras.hpp 
+  111  2022-07-21 20:45:05 make clean;make;make run
+  112  2022-07-21 20:45:20 ls
+  113  2022-07-21 20:45:34 cp temp_point_sampen.cpp sampen.cpp 
+  114  2022-07-21 20:45:39 make clean;make;make run
+  115  2022-07-21 21:31:42 git -version
+  116  2022-07-21 21:31:54 git --version
+  117  2022-07-21 21:32:08 apt-get install git
+  118  2022-07-21 21:32:19 ls
+  119  2022-07-21 21:39:12 git init
+  120  2022-07-21 21:39:44 git add .
+  121  2022-07-21 21:40:17 git commit -m "first submit"
+  122  2022-07-21 21:41:02 git remote add origin https://github.com/AllenChenChao/BA.git
+  123  2022-07-21 21:41:52 git remote add origin git@github.com:AllenChenChao/BA.git
+  124  2022-07-21 21:43:32 git push -u origin master
+  125  2022-07-21 21:47:10 git branch -M 'main'
+  126  2022-07-21 21:47:28 git push -u origin 'main'
+  127  2022-07-21 21:53:12 eval  "$(ssh-agent -s)" 
+  128  2022-07-21 21:53:48 ssh-add ~/.ssh/id_rsa
+  129  2022-07-21 21:56:20 git remote set-url origin git@github.com:AllenChenChao/BA.git
+  130  2022-07-21 21:56:28 git push -u origin 'main'
+  131  2022-07-21 21:59:04 ls -al ~/.ssh
+  132  2022-07-21 22:01:10 ssh-keygen -t ed25519 -C allen.cc@foxmail.com
+  133  2022-07-21 22:02:08 eval "$(ssh-agent -s)"
+  134  2022-07-21 22:02:30 ssh-add ~/.ssh/id_ed25519
+  135  2022-07-21 22:03:09 cat ~/.ssh/id_ed25519
+  136  2022-07-21 22:03:29 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW                                                       │
+  137  2022-07-21 22:03:29 QyNTUxOQAAACBNNqjty/qcHkjYGPj9lUf8zNCqAlNZbjMyixT6kj8RhQAAAJijB7gTowe4                                                       │
+  138  2022-07-21 22:03:29 EwAAAAtzc2gtZWQyNTUxOQAAACBNNqjty/qcHkjYGPj9lUf8zNCqAlNZbjMyixT6kj8RhQ                                                       │
+  139  2022-07-21 22:03:29 AAAEBFm13/isk2Zg6LRH+oXVJbCeRH1i/1Vdx5MRurD/aeM002qO3L+pweSNgY+P2VR/zM                                                       │
+  140  2022-07-21 22:05:40 cp ~/.ssh/id_ed25519 /root/
+  141  2022-07-21 22:08:21 ssh -T git@github.com
+  142  2022-07-21 22:11:29 git status
+  143  2022-07-21 22:11:39 git log
+  144  2022-07-22 00:40:15 ssh-keygen -t rsa -C allen.cc@foxmail.com
+  145  2022-07-22 00:45:21 git remote set-url origin git@github.com:AllenChenChao/BA.git
+  146  2022-07-22 00:46:06 git push origin main
+  147  2022-07-22 00:47:01 ls
+  148  2022-07-22 00:47:13 cp temp-sampen.cpp sampen.cpp 
+  149  2022-07-22 00:47:24 make clean;make;make run
+  150  2022-07-22 00:47:39 vim paras.hpp 
+  151  2022-07-22 00:47:57 make clean;make;make run
+  152  2022-07-22 02:00:09 cp temp-sampen.cpp sampen.cpp 
+  153  2022-07-22 02:00:18 make clean;make;make run
+  154  2022-07-22 02:00:40 cp temp-sampen.cpp sampen.cpp 
+  155  2022-07-22 02:00:44 make clean;make;make run
+  156  2022-07-22 02:01:20 git add temp-sampen.cpp 
+  157  2022-07-22 02:02:33 git commit -m "temp-sampen.cpp is update by solveing self and repeated pair problem"
+  158  2022-07-22 02:03:08 git push origin main
+  159  2022-07-22 02:11:21 vim paras.hpp 
+  160  2022-07-22 02:12:37 vim paras.hpp 
+  161  2022-07-22 02:12:57 cp temp-sampen.cpp sampen.cpp 
+  162  2022-07-22 02:13:03 make clean;make;make run
+  163  2022-07-22 02:13:13 ls
+  164  2022-07-22 02:13:25 cp bak-20220713-pointer_list-sampen.cpp sampen.cpp 
+  165  2022-07-22 02:13:32 make clean;make;make run
+  166  2022-07-22 02:14:05 cp bak-20220713-pointer_list-sampen.cpp sampen.cpp 
+  167  2022-07-22 02:14:08 make clean;make;make run
+  168  2022-07-22 02:29:37 ls
+  169  2022-07-22 03:47:41 make clean;make;make run
+  170  2022-07-22 03:49:41 make clean;make;make run
+  171  2022-07-22 03:50:06 make clean;make;make run
+  172  2022-07-22 03:53:27 cp sampen.cpp SF_sampen.cpp
+  173  2022-07-22 04:00:03 cp temp-sampen.cpp sampen.cpp 
+  174  2022-07-22 04:00:11 make clean;make;make run
+  175  2022-07-22 04:00:54 cp temp-sampen.cpp sampen.cpp 
+  176  2022-07-22 04:00:57 make clean;make;make run
+  177  2022-07-22 04:01:42 cp temp-sampen.cpp sampen.cpp 
+  178  2022-07-22 04:01:45 make clean;make;make run
+  179  2022-07-22 04:02:05 vim paras.hpp 
+  180  2022-07-22 04:02:23 cp SF_sampen.cpp sampen.cpp 
+  181  2022-07-22 04:02:27 make clean;make;make run
+  182  2022-07-22 04:02:44 cp temp_point_sampen.cpp sampen.cpp 
+  183  2022-07-22 04:02:47 make clean;make;make run
+  184  2022-07-22 04:03:07 cp temp-sampen.cpp sampen.cpp 
+  185  2022-07-22 04:03:09 make clean;make;make run
+  186  2022-07-22 04:05:27 cp temp-sampen.cpp sampen.cpp 
+  187  2022-07-22 04:05:30 make clean;make;make run
+  188  2022-07-22 04:07:01 cp temp_point_sampen.cpp sampen.cpp 
+  189  2022-07-22 04:07:04 make clean;make;make run
+  190  2022-07-22 04:11:17 cp temp_point_sampen.cpp sampen.cpp 
+  191  2022-07-22 04:11:20 make clean;make;make run
+  192  2022-07-22 04:22:01 cp temp-sampen.cpp sampen.cpp 
+  193  2022-07-22 04:24:03 cp temp-sampen.cpp sampen.cpp 
+  194  2022-07-22 04:25:48 cp temp_point_sampen.cpp sampen.cpp 
+  195  2022-07-22 04:25:54 make clean;make;make run
+  196  2022-07-22 04:33:49 cp temp-sampen.cpp sampen.cpp 
+  197  2022-07-22 04:35:34 cp temp_point_sampen.cpp sampen.cpp 
+  198  2022-07-22 04:35:40 vim paras.hpp 
+  199  2022-07-22 04:35:55 make clean;make;make run
+  200  2022-07-22 04:36:24 cp SF_sampen.cpp sampen.cpp 
+  201  2022-07-22 04:36:27 make clean;make;make run
+  202* 2022-07-22 04:43:39 
+  203  2022-07-22 04:44:38 git commit -m "verfy temp-sampen.cpp,  has a right number compared with SF and pointer"
+  204  2022-07-22 04:45:10 git push origin main
+  205  2022-07-22 04:54:15 cp temp-sampen.cpp bak-BA-pointer2array-sampen.cpp
+  206  2022-07-22 04:55:11 cp temp_point_sampen.cpp bak-20220721-pointerlist-sampen.cpp
+  207  2022-07-22 04:56:01 ls
+  208  2022-07-22 04:56:28 ls
+  209  2022-07-23 02:51:33 ls
+  210  2022-07-23 16:43:52 ls -l
+  211  2022-07-23 16:47:08 cp sampen_test.cpp bak_common_sampen_test.cpp
+  212  2022-07-23 17:02:53 cp temp-sampen.cpp sampen.cpp
+  213  2022-07-23 17:32:33 ls -l
+  214  2022-07-23 17:33:03 cp sampen.hpp  bak_common_sampen.hpp 
+  215  2022-07-23 17:45:40 git add .
+  216  2022-07-23 17:46:27 git commit -m "Bucket array 重组 成功"
+  217  2022-07-23 17:46:56 history > history.log

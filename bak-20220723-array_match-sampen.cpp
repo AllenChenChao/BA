@@ -197,10 +197,10 @@ void sampen(float *in, int len,int *Bucket1,int *Bucket2,int *Bucket3,int Nb, in
 
 
 
-        int locationiBegin;
-        int locationjBegin;
-        int tempjLow;
-        int tempjHigh;
+int locationiBegin;
+int locationjBegin;
+int tempjLow;
+int tempjHigh;
         loopBuckOutSearch: for(int i = 0; i < Nb; i ++){
                 #pragma HLS loop_tripcount min=1 max=60
                 int tempjLow = 0<i-m_factor?i-m_factor:0;
@@ -210,8 +210,8 @@ void sampen(float *in, int len,int *Bucket1,int *Bucket2,int *Bucket3,int Nb, in
                 locationiBegin = Bucket2[i];
                 // std::cout<<"i:"<<i<<std::endl;
                 // if(i == 10) std::cout<<"i:"<<i<<"m_factor"<<m_factor<<std::endl;
-                // loopBuckInnerSearch:for(int j = tempjLow; j < tempjHigh; j ++){
-                loopBuckInnerSearch:for(int j = i+1; j < tempjHigh; j ++){
+                loopBuckInnerSearch:for(int j = tempjLow; j < tempjHigh; j ++){
+                // loopBuckInnerSearch:for(int j = i+1; j < tempjHigh; j ++){
                         // if(i == 10) std::cout<<"j:"<<j<<std::endl;
                         #pragma HLS loop_tripcount min=3 max=5
                         // if(j < i - 2){continue;} 
@@ -252,42 +252,41 @@ void sampen(float *in, int len,int *Bucket1,int *Bucket2,int *Bucket3,int Nb, in
                                                         count2 = count2 + 1;
                                                 }
                                         } 
-                                        std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl;
+                                        // std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl;
                                 }
                         }
                        
         	}
 	}
 
-        loopBuckOutselfSearch: for(int i = 0; i < Nb; i ++){
-                tempiNum = Bucket1[i];
-                locationiBegin = Bucket2[i];
-                loopBuckOutselfMatch:for(int k = 0; k < tempiNum;k++){
-                        templocationik = Bucket3[locationiBegin + k];
-                        loopBuckInnerselfMatch:for(int g = k+1; g < tempiNum ; g++){
-                                templocationjg = Bucket3[locationiBegin + g];
-                                tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
-                                tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
-                                if( tempComparsion1 <= r && tempComparsion2 <= r){
-                                        count1 = count1 + 1;
-                                        // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
-                                        tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
-                                        templocationik_2 = templocationik+2;
-                                        templocationjg_2 = templocationjg+2;
-                                        if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
-                                                count2 = count2 + 1;
-                                        }
-                                }
-                                std::cout<<"templocationik: "<<templocationik<<" templocationjg: "<<templocationjg<<" count1: "<<count1<<" count2: "<<count2<<std::endl;                                 
-                        }
-                }        
-        }
+        // loopBuckOutselfSearch: for(int i = 0; i < Nb; i ++){
+        //         tempiNum = Bucket1[i];
+        //         locationiBegin = Bucket2[i];
+        //         loopBuckOutselfMatch:for(int k = 0; k < tempiNum;k++){
+        //                 templocationik = locationiBegin + k;
+        //                 loopBuckInnerselfMatch:for(int g = k; g < tempiNum ; g++){
+        //                         templocationjg = locationiBegin + g;
+        //                         tempComparsion1 = abs(buff[templocationik] - buff[templocationjg]);
+        //                         tempComparsion2 = abs(buff[templocationik+1] - buff[templocationjg+1]);
+        //                         if( tempComparsion1 <= r && tempComparsion2 <= r){
+        //                                 count1 = count1 + 1;
+        //                                 // std::cout<<"match:"<<templocationik<<" "<<templocationjg<<std::endl;
+        //                                 tempComparsion3 = abs(buff[templocationik+2] - buff[templocationjg+2]);
+        //                                 templocationik_2 = templocationik+2;
+        //                                 templocationjg_2 = templocationjg+2;
+        //                                 if( templocationik_2 < len && templocationjg_2 < len &&  tempComparsion3 <= r) {
+        //                                         count2 = count2 + 1;
+        //                                 }
+        //                         }                                 
+        //                 }
+        //         }        
+        // }
 
         // std::cout<<"count1:"<<count1<<std::endl;
         // std::cout<<"count2:"<<count2<<std::endl;
-        // count1 = count1 - len + m -1;
+        count1 = count1 - len + m -1;
         float B = (float)count1/((N-m+1)*(N-m));
-        // count2 = count2 - len + m;
+        count2 = count2 - len + m;
         std::cout<<"count1:"<<count1<<std::endl;
         std::cout<<"count2:"<<count2<<std::endl;
         float A = (float)count2/((N-m)*(N-m-1));
