@@ -3,6 +3,6 @@
 // #define Length  360
 #include "paras.hpp" 
 
-void sampen(float *,int,int *,int *,int *,int, int&);
+void sampen(float *,int, int&);
 // void sampen(float *,int, float&);
 #endif
